@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: archtrace2
+Bundle-SymbolicName: com.archtrace2.nasser.eclipse;singleton:=true
+Bundle-Version: 2.0.0.qualifier
+Bundle-Activator: com.archtrace2.nasser.eclipse.Activator
+Bundle-Vendor: Nasser
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
