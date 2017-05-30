@@ -12,7 +12,7 @@
             name="Archtrace View"
             icon="icons/sample.gif"
             category="com.archtrace2.nasser.eclipse"
-            class="com.archtrace2.nasser.eclipse.views.archtrace"
+            class="com.archtrace2.nasser.eclipse.views.ArchTrace"
             id="com.archtrace2.nasser.eclipse.views.archtrace">
       </view>
    </extension>
@@ -24,7 +24,7 @@
                ratio="0.5"
                relative="org.eclipse.ui.views.ProblemView"
                relationship="right"
-               id="com.archtrace2.nasser.eclipse.views.archtrace">
+               id="com.archtrace2.nasser.eclipse.views.ArchTrace">
          </view>
       </perspectiveExtension>
    </extension>
