@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
@@ -62,7 +64,7 @@ public class ComponetsWidget extends Canvas {
 						}
 					});
 					try {
-						Thread.sleep(10000);
+						Thread.sleep(1100);
 					} catch (InterruptedException e) {
 						return;
 					}
@@ -199,7 +201,7 @@ public class ComponetsWidget extends Canvas {
 			table.setHeaderVisible(true);
 			String[] titles = new String[maxcomp];
 			titles[0] = "  COMPONENT NAME";
-			titles[1] = "  REQUIMENT1 ";
+			titles[1] = "  REQUIMENT 1 ";
 			if (maxcomp > 1)
 				for (int t = 2; t < maxcomp; t++)
 					titles[t] = "REQUIREMENT " + t;

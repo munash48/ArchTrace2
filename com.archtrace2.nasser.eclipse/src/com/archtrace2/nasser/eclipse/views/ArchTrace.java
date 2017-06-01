@@ -387,24 +387,7 @@ public class ArchTrace extends ViewPart {
 		Button button22tab2 = new Button(group2, SWT.Deactivate);
 
 		button22tab2.setLayoutData(grid2layoutdata);
-		button22tab2.addSelectionListener(new SelectionListener() {
 
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				// TODO Auto-generated method stub
-				for (Control kid : group2.getChildren()) {
-					kid.dispose();
-				}
-
-			}
-
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-		});
 
 		item2.setControl(group2);
 
@@ -460,6 +443,44 @@ public class ArchTrace extends ViewPart {
 		
 
 		item4.setControl(group4);
+		
+		Group group5 = new Group(tabFolder, SWT.NONE);
+		TabItem item5 = new TabItem(tabFolder, SWT.NONE);
+		item5.setText("Componets View");
+		group5.setLayout(gridlayout1);
+		
+		Label space63tab4 = new Label(group5, SWT.NONE);
+		space63tab4.setText("                                              ");
+		
+		Label title1 = new Label(group5, SWT.NONE);
+		title1.setText("        COMPONENTS      ");
+		
+		
+		Label title2 = new Label(group5, SWT.NONE);
+		title2.setText("REQUIREMENTS");
+		
+		
+		
+		
+		Label space83tab4 = new Label(group5, SWT.NONE);
+		space83tab4.setText("                                              ");
+
+		
+		final MatrixWidget Matrixtable = new MatrixWidget(group5, SWT.NONE, new RGB(0,
+				0, 255));
+		Matrixtable.setLayout(gridlayout1);
+
+		
+		
+		
+
+		
+		
+		
+
+		
+
+		item5.setControl(group5);
 
 	}
 
