@@ -180,9 +180,13 @@ public class ComponetsWidget extends Canvas {
 			for (int j = 0; j < i; j++) {
 				String[] Component = csvline[j].split(cvsSplitBy);
 
-				for (int k = 0; k < Component.length; k++) {
+				for (int k = 0; k < maxcomp; k++) {
 
-					ComponentMatrix[j][k] = Component[k];
+					if (k >= Component.length)
+
+						ComponentMatrix[j][k] = "     ";
+					else
+						ComponentMatrix[j][k] = Component[k];
 
 				}
 			}

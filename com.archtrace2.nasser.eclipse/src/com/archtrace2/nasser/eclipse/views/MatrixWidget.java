@@ -30,7 +30,7 @@ public class MatrixWidget extends Canvas {
 			| SWT.FULL_SELECTION);
 	int rowCount4 = 0;
 
-	String[][] ComponentMatrix = null;
+	String[][] ComponentMatrix ;
 
 	String[][] RequirMatrix;
 	int i = 0;
@@ -78,7 +78,7 @@ public class MatrixWidget extends Canvas {
 						}
 					});
 					try {
-						Thread.sleep(1200);
+						Thread.sleep(12000);
 					} catch (InterruptedException e) {
 						return;
 					}
@@ -189,9 +189,13 @@ public class MatrixWidget extends Canvas {
 			for (int j = 0; j < i; j++) {
 				String[] Component = csvline[j].split(cvsSplitBy);
 
-				for (int k = 0; k < Component.length; k++) {
+				for (int k = 0; k < maxcomp; k++) {
 
-					ComponentMatrix[j][k] = Component[k];
+					if (k >= Component.length)
+
+						ComponentMatrix[j][k] = "     ";
+					else
+						ComponentMatrix[j][k] = Component[k];
 
 				}
 			}
@@ -289,7 +293,7 @@ public class MatrixWidget extends Canvas {
 			}
 
 			String marcher = "||||||||||||||";
-			String holder = null;
+			String holder = "         ";
 
 			for (int i2 = 0; i2 < rowCount4; i2++) {
 				TableItem item1 = new TableItem(table, SWT.NONE);
@@ -339,78 +343,7 @@ public class MatrixWidget extends Canvas {
 				table.getColumn(i1).pack();
 			}
 			table.setSize(table.computeSize(SWT.DEFAULT, 200));
-			table.addListener(SWT.MouseDown, new Listener() {
-
-				@Override
-				public void handleEvent(Event event) {
-					// TODO Auto-generated method stub
-					String string = "";
-
-					TableItem[] selection = table.getSelection();
-					for (int i = 0; i < selection.length; i++)
-						string += selection[i] + ",";
-					string = string.replace('{', ',');
-					string = string.replaceAll(" ", ",Tulumbe");
-					string = string.replace('}', ' ');
-					String[] splitstring = string.split(cvsSplitBy);
-					for (int i = 0; i < splitstring.length; i++)
-						if (splitstring[i].charAt(0) == 'U') {
-							string = splitstring[i];
-						}
-					String UID = string;
-					String userr = "";
-					String ftr = "";
-					String desc = "";
-					String comps = "";
-
-					System.out.println("RQrowCount3......   " + rowCount4);
-
-					for (int i2 = 0; i2 < rowCount4; i2++) {
-						if (RequirMatrix[i2][0].equals(UID)) {
-							userr = RequirMatrix[i2][1];
-							ftr = RequirMatrix[i2][2];
-							desc = RequirMatrix[i2][3];
-
-						}
-						for (int j = 0; j < 4; j++) {
-
-							System.out.print(RequirMatrix[i2][j] + "   ");
-
-						}
-						System.out.println();
-
-					}
-
-					for (int i2 = 0; i2 < i; i2++) {
-						for (int j = 0; j < maxcomp; j++) {
-
-							if ((UID.trim())
-									.equalsIgnoreCase(ComponentMatrix[i2][j]
-											.trim())) {
-								comps += "> " + ComponentMatrix[i2][0] + "\n";
-								System.out
-										.println("comps contains>>>>" + comps);
-							}
-
-							System.out.print(ComponentMatrix[i2][j] + "   ");
-
-						}
-						System.out.println();
-
-					}
-
-					string = "REQUIREMENT DETAILS \n\n"
-							+ "URID                 : " + UID
-							+ "\nUSER                : " + userr
-							+ "\nFeature            : " + ftr
-							+ "\nDescription     : " + desc
-							+ "\n\nCOMPONENTS WHICH FULL FILL IT \n\n" + comps;
-
-					MessageDialog.openInformation(null, "Arch Trace", string);
-
-				}
-			});
-
+			
 			br.close();
 
 		} catch (IOException e2) {

@@ -19,12 +19,14 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
+
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
-
+import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.*;
 
@@ -44,17 +46,13 @@ import org.eclipse.ui.part.*;
  */
 
 public class ArchTrace extends ViewPart {
-	int i = 0;
+	
 	static String csvloc = "";
 	static String xmlloc = "";
 	String xmltemp = "";
 	String Chosenfile = "";
 
-	String[][] ComponentMatrix;
-	String[][] RequirMatrix;
-	int maxcomp = 0;
-	int rowCount3 = 0;
-	int RQrowCount3 = 0;
+	
 
 	/**
 	 * The ID of the view as specified by the extension.
@@ -470,7 +468,87 @@ public class ArchTrace extends ViewPart {
 				0, 255));
 		Matrixtable.setLayout(gridlayout1);
 
-		
+		Matrixtable.table.addListener(SWT.MouseDown, new Listener(){
+
+			@Override
+			public void handleEvent(Event event) {
+				// TODO Auto-generated method stub
+				String string = "";
+
+				TableItem[] selection = Matrixtable.table.getSelection();
+				
+				System.out.println("selection ############# "+selection);
+				for (int i = 0; i < selection.length; i++)
+					string += selection[i] + ",";
+				string = string.replace('{', ',');
+				string = string.replaceAll(" ", ",Tulumbe");
+				string = string.replace('}', ' ');
+				String[] splitstring = string.split(Matrixtable.cvsSplitBy);
+				for (int i = 0; i < splitstring.length; i++)
+					if (splitstring[i].charAt(0) == 'U') {
+						string = splitstring[i];
+					}
+				String UID = string;
+				System.out.println("UID ############# "+UID);
+				String userr = "";
+				String ftr = "";
+				String desc = "";
+				String comps = "";
+
+				System.out.println("RQrowCount3......   " + Matrixtable.rowCount4 + "Matrixtable.maxcomp " +Matrixtable.maxcomp);
+
+				for (int i2 = 0; i2 < Matrixtable.rowCount4; i2++) {
+					if (Matrixtable.RequirMatrix[i2][0].equals(UID)) {
+						userr = Matrixtable.RequirMatrix[i2][1];
+						ftr = Matrixtable.RequirMatrix[i2][2];
+						desc = Matrixtable.RequirMatrix[i2][3];
+
+					}
+					for (int j = 0; j < 4; j++) {
+
+						System.out.print(Matrixtable.RequirMatrix[i2][j] + " >>>>>>>>>>>>>>>>  ");
+
+					}
+					System.out.println();
+
+				}
+				
+				System.out.println("Matrixtable.i ............................  " + Matrixtable.i);
+			
+
+				for (int i2 = 0; i2 < Matrixtable.i; i2++) {
+					for (int j = 0; j < Matrixtable.maxcomp; j++) {
+						System.out.println("Matrixtable.ComponentMatrix[i2][j]>>>>>>>>>>>>>>>\n                                ................... " +Matrixtable.ComponentMatrix[i2][j] + " [i2] is "+ i2 + "[j] is + "+j);
+
+						if ((UID.trim().toString())
+								.equalsIgnoreCase(Matrixtable.ComponentMatrix[i2][j]
+										.trim().toString())) {
+							comps += "> " + Matrixtable.ComponentMatrix[i2][0] + "\n";
+							System.out
+									.println("comps contains     >>>>" + comps);
+						}
+
+						
+
+					}
+					System.out.println();
+
+				}
+			
+				
+
+				string = "REQUIREMENT DETAILS \n\n"
+						+ "URID                 : " + UID
+						+ "\nUSER                : " + userr
+						+ "\nFeature            : " + ftr
+						+ "\nDescription     : " + desc
+						+ "\n\nCOMPONENTS WHICH FULL FILL IT \n\n" + comps;
+
+				MessageDialog.openInformation(item5.getControl()
+						.getShell(), "Arch Trace", string);
+			}
+			
+		});
 		
 		
 
