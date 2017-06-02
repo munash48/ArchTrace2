@@ -58,13 +58,12 @@ public class ComponetsWidget extends Canvas {
 							if (ComponetsWidget.this != null
 									&& !ComponetsWidget.this.isDisposed())
 								ComponetsWidget.this.table.removeAll();
-							;
 							ComponetsWidget.this.paintControl();
 
 						}
 					});
 					try {
-						Thread.sleep(1100);
+						Thread.sleep(11000);
 					} catch (InterruptedException e) {
 						return;
 					}
