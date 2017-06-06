@@ -106,7 +106,8 @@ public class RequirementsWidget extends Canvas {
 	// button22tab22.setLayoutData(grid2layoutdata);
 
 	public void paintControl() {
-
+		RequirementsWidget.this.table
+		.removeAll();
 		int i = 0;
 		String csvloc = ArchTrace.getCsvloc();
 

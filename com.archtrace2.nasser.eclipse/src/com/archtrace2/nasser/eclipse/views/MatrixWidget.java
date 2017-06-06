@@ -1,11 +1,12 @@
 package com.archtrace2.nasser.eclipse.views;
 
 import java.io.BufferedReader;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import org.eclipse.jface.dialogs.MessageDialog;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
@@ -16,9 +17,6 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
@@ -63,6 +61,11 @@ public class MatrixWidget extends Canvas {
 				MatrixWidget.this.paintControl();
 			}
 		});
+		
+		MatrixWidget.this.table.removeAll();
+		
+		
+		    
 
 		new Thread("TickTock") {
 			public void run() {
@@ -117,7 +120,7 @@ public class MatrixWidget extends Canvas {
 	
 	public void paintControl() {
 
-		
+		MatrixWidget.this.table.removeAll();
 		rowCount3=0;
 		i=0;
 
@@ -226,6 +229,7 @@ public class MatrixWidget extends Canvas {
 			while ((line = br.readLine()) != null) {
 
 				// use comma as separator
+				@SuppressWarnings("unused")
 				String[] requirement = line.split(cvsSplitBy);
 				rowCount4++;
 

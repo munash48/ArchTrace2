@@ -101,7 +101,7 @@ public class ComponetsWidget extends Canvas {
 	// button22tab22.setLayoutData(grid2layoutdata);
 
 	public void paintControl() {
-
+		ComponetsWidget.this.table.removeAll();
 		int i = 0;
 	
 		String xmlloc = ArchTrace.getXmlloc();
