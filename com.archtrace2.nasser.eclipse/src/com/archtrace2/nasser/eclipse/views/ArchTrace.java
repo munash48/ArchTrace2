@@ -444,7 +444,7 @@ public class ArchTrace extends ViewPart {
 		
 		Group group5 = new Group(tabFolder, SWT.NONE);
 		TabItem item5 = new TabItem(tabFolder, SWT.NONE);
-		item5.setText("Componets View");
+		item5.setText("Reuirement Matrix View");
 		group5.setLayout(gridlayout1);
 		
 		Label space63tab4 = new Label(group5, SWT.NONE);
